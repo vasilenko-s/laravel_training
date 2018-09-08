@@ -34,12 +34,14 @@ class ContactController extends Controller
             ];
 //
 //            //возвращение старых данных
-//            $validator = Validator::make($request->all(), $rules);
-//            if ($validator->fails()) {
-//                return back()->withErrors($validator)->withInput();
-//            }
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                $request->flash();
+                return view('default.contact', array('title'=>'Contacts'))
+                ->withErrors($validator)->withInput($request->input());
+            }
 
-            $validateData = $request->validate($rules);
+           // $validateData = $request->validate($rules);
 
 //            // Data is valid...
 //
