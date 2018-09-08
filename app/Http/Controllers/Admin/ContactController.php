@@ -24,30 +24,28 @@ class ContactController extends Controller
 //
 //
 
-        $request->flash();
+        //$request->flash();
 
-//        if ($request->isMethod('post')){
-//
-////            $request->validate($rules);
-//
-//            $rules =[
-//                'name'=>'required|max:10',
-//                'email'=>'required|email'
-//            ];
+        if ($request->isMethod('post')) {
+
+            $rules = [
+                'name' => 'required|max:10',
+                'email' => 'required|email'
+            ];
 //
 //            //возвращение старых данных
 //            $validator = Validator::make($request->all(), $rules);
 //            if ($validator->fails()) {
 //                return back()->withErrors($validator)->withInput();
 //            }
-//
-//            $request->validate($rules);
-//
+
+            $validateData = $request->validate($rules);
+
 //            // Data is valid...
 //
 //            dump($request->all());
 //
-//        }
+        }
 
 
 
