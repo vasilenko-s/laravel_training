@@ -43,7 +43,8 @@ class ContactController extends Controller
             // по документации
            //$validateData = $request->validate($rules);
 
-            // Должно работать с этим кодом но не работает (сессия, она включена)
+            // Должно работать с этим кодом, но не работает
+            // (не работает сессия, она включена)
             $this->validate($request, $rules);
 
 //            // Data is valid...
