@@ -33,19 +33,22 @@ class ContactController extends Controller
                 'email' => 'required|email'
             ];
 //
-//            //возвращение старых данных
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()) {
-                $request->flash();
-                return view('default.contact', array('title'=>'Contacts'))
-                ->withErrors($validator)->withInput($request->input());
-            }
+//            //без этого кода не работает возвращение старых данных
+//            $validator = Validator::make($request->all(), $rules);
+//            if ($validator->fails()) {
+//                $request->flash();
+//                return view('default.contact', array('title'=>'Contacts'))
+//                ->withErrors($validator)->withInput($request->input());
+//            }
+            // по документации
+           //$validateData = $request->validate($rules);
 
-           // $validateData = $request->validate($rules);
+            // Должно работать с этим кодом но не работает (сессия, она включена)
+            $this->validate($request, $rules);
 
 //            // Data is valid...
 //
-//            dump($request->all());
+           dump($request->all());
 //
         }
 
