@@ -126,8 +126,12 @@ return [
 
     'custom' => [
         'attribute-name' => [
-            'rule-name' => 'custom-message',
+            'rule-name' => 'custom-message'
         ],
+
+//        'name' => [
+//            'required' => 'Поле name обязательно для заполнения'
+//        ],
     ],
 
     /*

@@ -4,9 +4,9 @@
 
     <div class="col-md-9">
 
-		<pre>
-		{{ print_r(Session::all()) }}
-		</pre>
+		{{--<pre>--}}
+		{{--{{ print_r(Session::all()) }}--}}
+		{{--</pre>--}}
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">

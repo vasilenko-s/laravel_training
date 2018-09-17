@@ -36,6 +36,37 @@ Route::get('/articles', ['uses'=>'Admin\Core@getArticles', 'as'=>'articles']);
 
 Route::get('/article/{id}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article']);
 
-Route::match(['get','post'],'/contact/{id?}', ['uses'=>'Admin\ContactController@show', 'as'=>'contact']);
+Route::get('/contact', ['uses'=>'Admin\ContactController@show', 'as'=>'contact'])
+->middleware('auth');
+
+Route::post('/contact', ['uses'=>'Admin\ContactController@store']);
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//admin
+Route::group(['prefix'=>'admin', 'middleware'=>['web','auth']], function(){
+
+    Route::get('/',['uses'=>'Admin\AdminController@show', 'as'=>'admin_index']);
+    Route::get('/add/post',['uses'=>'Admin\AdminPostController@create', 'as'=>'admin_add_post']);
+
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+//Route::get('/login','Auth\MyAuthController@showLogin');
+
+
+//login
+Route::group(['middleware'=>['web']], function(){
+
+    Route::get('/login',['uses'=>'Auth\MyAuthController@showLogin', 'as'=>'login']);
+    Route::post('/login',['uses'=>'Auth\MyAuthController@authenticate']);
+
+});
